@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>PROFLIO</b> TI RMU</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-bar-item w3-button">Index</a>
+      <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="java.html" class="w3-bar-item w3-button">JavaScript</a>
+      <a href="api.html" class="w3-bar-item w3-button">API </a>
+
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Page content -->
+<div class="w3-content w3-padding-64 w3-margin-top" style="max-width:1564px">
+  <center><h1>API</h1></center>
+<hr>
+<div>
+  <h1>Random img</h1>
+  <img id="randomImage" src="https://picsum.photos/400/400?0.25631554656629896" alt="Random Image">
+  <br><br>
+  <button id="generateButton">Random Image</button>
+  <hr>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const randomImageButton = document.getElementById('generateButton');
+  const randomImageElement = document.getElementById('randomImage');
+
+  function getRandomImage() {
+    const apiUrl = 'https://picsum.photos/400/400';
+
+    const randomImageUrl = `${apiUrl}?${Math.random()}`;
+
+    randomImageElement.src = randomImageUrl;
+  }
+
+  getRandomImage();
+
+  randomImageButton.addEventListener('click', getRandomImage);
+});
+</script>
+<hr>
+<h2> Your Name</h2>
+<script>
+  // Function to display the greeting
+  function displayGreeting() {
+      // Get the entered name from the input field
+      var userName = document.getElementById('nameInput').value;
+
+      // Display the greeting
+      var greeting = document.getElementById('greeting');
+      greeting.innerHTML = 'Hello, ' + userName + '!';
+  }
+</script>
+<label for="nameInput">Name:</label>
+<input type="text" id="nameInput">
+<button onclick="displayGreeting()">Submit</button>
+<p id="greeting"></p>
+
+<hr>
+<h2>Click to change</h2>
+<p id="demo2">Hi</p>
+<button onclick="myFunction()">Click me</button>
+
+<hr>
+<h2></h2>
+<div id="pricesContainer">
+  <div id="prices"><p>1 USDT can buy : </p><ul><li>1INCH : 2.7031216216216216189185</li><li>AAVE : 0.0108647547661723761795</li><li>ABT : 7.3110745614035088146265</li><li>ACH : 49.543281733746129993183</li><li>ACS : 343.5837097854652261155255</li><li>ADA : 1.8034265103697024</li><li>AED : 3.6729525527499999666615</li><li>BTC : 0.0000237251695341</li><li>ETH : 0.0004466000339416</li></ul></div>
+  <div id="lastUpdateTime"><p>Last Update Time : 11:43:40 AM</p></div>
+</div>
+<script>
+  // Paste your JavaScript code here
+
+  function fetchPrices() {
+    var now = new Date();
+    var currentTime = now.toLocaleTimeString();
+
+    fetch('https://api.coinbase.com/v2/exchange-rates?currency=USDT')
+        .then(response => response.json())
+        .then(data => {
+            displayPrices(data);
+            displayLastUpdateTime(currentTime);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert('Error fetching data. Please try again.');
+        });
+  }
+
+  function displayPrices(data) {
+    var pricesDiv = document.getElementById('prices');
+    var rates = data.data.rates;
+
+    var currencies = ['1INCH', 'AAVE', 'ABT', 'ACH', 'ACS', 'ADA', 'AED', 'BTC', 'ETH'];
+    var pricesHtml = '<p>1 USDT can buy : </p><ul>';
+
+    currencies.forEach(currency => {
+        if (rates[currency]) {
+            pricesHtml += `<li>${currency} : ${rates[currency]}</li>`;
+        } else {
+            pricesHtml += `<li>${currency} : N/A</li>`;
+        }
+    });
+
+    pricesHtml += '</ul>';
+    pricesDiv.innerHTML = pricesHtml;
+  }
+
+  function displayLastUpdateTime(currentTime) {
+    var updateTimeDiv = document.getElementById('lastUpdateTime');
+    updateTimeDiv.innerHTML = `<p>Last Update Time : ${currentTime}</p>`;
+  }
+
+  fetchPrices();
+
+  setInterval(fetchPrices, 3000);
+</script>
+
+
+<hr>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 10, 5, 2, 3],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  
+
+</script>
+
+<form 
+ 
+ method="POST" 
+ action="https://script.google.com/macros/s/AKfycbwrJ77H1r08nrcopAaXy005yPDlMMzXjD7jY-Q6TILRxKncl8Lif2-4evtAx49KBOd2rg/exec">
+
+ <input name="Email" type="email" placeholder="Email" required>
+ <input name="Name" type="text" placeholder="Name" required>
+ <input name="Name" type="text" placeholder="Topic" required>
+ <button type="submit">Send</button>
+ </form>
+<br>
+<div class="w3-center w3-padding-24">
+  <iframe width="100%" height="500px"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTc5Nc2BijHH8md1buLIv8D3lYEGqzPgupCa7eWvNmFG7oqShpx9a1blpkppPTIm1bkCAwaFhnYMdqE/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+  ></iframe>
+</div>
+<br><br>
+
+<div>
+   <!-- แผนที่ -->
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3831.382697053006!2d103.27097839999999!3d16.200753700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3122a6ae121c1c2f%3A0x626cae9fcd86bf3d!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4Lij4Liy4LiK4Lig4Lix4LiP4Lih4Lir4Liy4Liq4Liy4Lij4LiE4Liy4Lih!5e0!3m2!1sth!2sth!4v1701927689927!5m2!1sth!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+
+
+
+<!-- End page content -->
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+  
+
+  function myFunction() {
+    fetch("https://catfact.ninja/fact")
+      .then(function(response){
+        return response.json()
+      })
+      .then(function(data){
+        let txt = "";
+          for (let x in data) {
+            txt += data[x] + " ";
+          document.getElementById("demo2").innerHTML = txt;
+          };
+      
+        return data;
+      })  
+      
+ 
+}
+</script>
+
+
+
+
+</body>
+</html>
