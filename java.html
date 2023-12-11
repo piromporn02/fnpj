@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>PROFLIO</b> TI RMU</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-bar-item w3-button">Index</a>
+      <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="java.html" class="w3-bar-item w3-button">JavaScript</a>
+      
+      <a href="api.html" class="w3-bar-item w3-button">API </a>
+
+      </a>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<center><H1>JavaScript</H1></center>
+<div class="content">
+
+
+  <hr>
+  <h2>สุ่มตัวเลขลูกเต๋า</h2>
+  <button onclick="rollAndDisplayDice()">ทอยลูกเต๋า</button>
+  <p id="diceResult"></p>
+
+  <hr>
+  <h2>แปลงตัวอักษรตัวแรกของ str ให้เป็นตัวพิมพ์ใหญ่ส่วนตัวอักษรที่เหลือให้มีขนาดเหมือนเดิม</h2>
+    <p>
+        <label for="inputText">ก่อนแปลง: </label>
+        <input type="text" id="inputText">
+        <button onclick="showModifiedString()">แปลง</button>
+      </p>
+      
+      <p>หลังแปลง = <span id="modifiedString" class="output-box"></span></p>
+  <hr>
+  <input type="number" id="inputDays" placeholder="จำนวนวัน">
+<button onclick="calculateSeconds()">คำนวณเป็นวินาที</button>
+<p id="resultInSeconds"></p>
+  
+  
+
+<hr>
+<h2>หาความยาวเส้นรอบวงของวงกลม</h2>
+<button onclick="calculate()">คำนวณความยาว</button>
+<p id="result"></p>
+<hr>
+
+<hr>
+<h1>เรียงลำดับตัวเลข</h1>
+<label for="numbers">กรอกตัวเลข (คั่นด้วย comma): </label>
+<input type="text" id="numbers" placeholder="y.g., 10, 2, 8, 1, 4">
+<button onclick="sortNumbers()">เรียงลำดับ</button>
+<div id="resultes"></div>
+<hr>
+  <!-- End page content -->
+</div>
+
+
+<script>
+  function rollDice() {
+   const randomNumber = Math.floor(Math.random() * 6) + 1;
+   return randomNumber;
+ }
+
+ function rollAndDisplayDice() {
+   const result = rollDice();
+   document.getElementById("diceResult").innerHTML = `ผลลูกเต๋า: ${result}`;
+}
+
+
+
+function daysToSeconds(days) {
+            const secondsInMinute = 60;
+            const minutesInHour = 60;
+            const hoursInDay = 24;
+
+            const seconds = days * hoursInDay * minutesInHour * secondsInMinute;
+
+            return seconds;
+        }
+
+        function calculateSeconds() {
+            const days = document.getElementById("inputDays").value;
+            let text;
+
+            if (isNaN(days) || days < 1) {
+                text = "ป้อนค่าไม่ถูกต้อง";
+            } else {
+                const seconds = daysToSeconds(days);
+                text = `จำนวนวินาทีที่เท่ากับ ${seconds} วินาที`;
+            }
+
+            document.getElementById("resultInSeconds").innerText = text;
+        }
+
+
+ function ucFirst(str) {
+   if (!str) return str;
+   const modifiedStr = str.charAt(0).toUpperCase() + str.slice(1);
+   return modifiedStr;
+ }
+
+ function ucFirst(str) {
+   if (!str) return str;
+   const modifiedStr = str.charAt(0).toUpperCase() + str.slice(1);
+   return modifiedStr;
+ }
+ function showModifiedString() {
+   const inputText = document.getElementById("inputText").value;
+   const modifiedString = ucFirst(inputText);
+
+   document.getElementById("modifiedString").innerText = modifiedString;
+ }
+
+ function calculateLoyaltyPoints(totalSales) {
+   let points = totalSales / 100;
+   points = Math.floor(points);
+   return points;
+ }
+
+ function updatePoints() {
+   const newTotalSales = prompt("กรุณากรอกยอดซื้อขายใหม่ (ในหน่วยบาท):");
+   const newPoints = calculateLoyaltyPoints(parseInt(newTotalSales));
+
+   if (!isNaN(newPoints)) {
+     document.getElementById("totalSales").innerText = newTotalSales;
+     document.getElementById("loyaltyPoints").innerText = newPoints;
+   } else {
+     alert("โปรดกรอกตัวเลขที่ถูกต้อง");
+   }
+ }
+ const totalSales = 360;
+ const loyaltyPoints = calculateLoyaltyPoints(totalSales);
+ document.getElementById("totalSales").innerText = totalSales;
+ document.getElementById("loyaltyPoints").innerText = loyaltyPoints;
+
+
+
+ function calculateCircleLength(radius) {
+   var PI = Math.PI;
+   var circleLength = PI * 2 * radius;
+   return circleLength;
+ }
+
+ function calculateCircleLength(radius) {
+   var PI = Math.PI;
+   var circleLength = PI * 2 * radius;
+   return circleLength;
+ }
+
+ function calculate() {
+   var radius = prompt("กรุณาใส่ค่ารัศมีของวงกลม:");
+
+   if (radius !== null && radius !== "") {
+     radius = parseInt(radius);
+
+     if (!isNaN(radius)) {
+       var length = calculateCircleLength(radius);
+       document.getElementById("result").innerText = "ความยาวเส้นรอบวงของวงกลมที่มีรัศมี " + radius + " คือ " + length;
+     } else {
+       alert("โปรดกรอกรัศมีของวงกลมให้ถูกต้อง");
+     }
+   }
+ }
+
+ const catHeightData = [
+ {age: 1, siamese: 3, persian: 4},
+ {age: 2, siamese: 4, persian: 5},
+ {age: 3, siamese: 5, persian: 6},
+ // เพิ่มข้อมูลต่อไปตามต้องการ
+];
+
+new Chart("myChart", {
+ type: "scatter",
+ data: {
+   datasets: [
+     {
+       label: 'Siamese Cat Height',
+       pointRadius: 4,
+       pointBackgroundColor: "rgb(255,0,0)", // เปลี่ยนสีตามที่ต้องการ
+       data: catHeightData.map(item => ({x: item.age, y: item.siamese}))
+     },
+     {
+       label: 'Persian Cat Height',
+       pointRadius: 4,
+       pointBackgroundColor: "rgb(0,0,255)", // เปลี่ยนสีตามที่ต้องการ
+       data: catHeightData.map(item => ({x: item.age, y: item.persian}))
+     }
+   ]
+ },
+ options: {
+   scales: {
+     xAxes: [{ticks: {min: 0, max: 5}}],
+     yAxes: [{ticks: {min: 0, max: 8}}],
+   }
+ }
+});
+
+
+
+const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+const yValues = [55, 49, 44, 24, 15];
+const barColors = [
+ "#b91d47",
+ "#00aba9",
+ "#2b5797",
+ "#e8c3b9",
+ "#1e7145"
+];
+
+new Chart("myChart2", {
+ type: "pie",
+ data: {
+   labels: xValues,
+   datasets: [{
+     backgroundColor: barColors,
+     data: yValues
+   }]
+ },
+ options: {
+   title: {
+     display: true,
+     text: "World Wide Wine Production 2018"
+   }
+ }
+});
+
+
+function sortNumbers() {
+        // ดึงค่าจาก input
+        var inputElement = document.getElementById("numbers");
+        var inputNumbers = inputElement.value;
+
+        // แปลงข้อความเป็นตัวเลขและเรียงลำดับ
+        var sortedNumbers = inputNumbers.split(',').map(Number).sort((a, b) => a - b);
+
+        // แสดงผลลัพธ์
+        var resultElement = document.getElementById("resultes");
+        resultElement.innerHTML = "<p>ตัวเลขที่เรียงลำดับ: " + sortedNumbers.join(', ') + "</p>";
+    }
+
+
+</script>
+  
+  
+
+
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<hr>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 10, 5, 2, 3],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  
+
+</script>
+
+<canvas id="scatterChart" style="width: 1014px; display: block; height: 506px;" width="1267" height="632" class="chartjs-render-monitor"></canvas>
+<script>
+  const xyValues = [
+   {x:50, y:7},
+   {x:60, y:8},
+   {x:70, y:8},
+   {x:80, y:9},
+   {x:90, y:9},
+   {x:100, y:9},
+   {x:110, y:10},
+   {x:120, y:11},
+   {x:130, y:14},
+   {x:140, y:14},
+   {x:150, y:15}
+ ];
+ 
+ new Chart("scatterChart", {
+   type: "scatter",
+   data: {
+     datasets: [{
+       pointRadius: 4,
+       pointBackgroundColor: "rgb(0,0,255)",
+       data: xyValues
+     }]
+   },
+   options: {
+     legend: {display: false},
+     scales: {
+       xAxes: [{ticks: {min: 40, max:160}}],
+       yAxes: [{ticks: {min: 6, max:16}}],
+     }
+   }
+ });
+</script>
+
+
+<!-- End page content -->
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+  
+
+  function myFunction() {
+    fetch("https://catfact.ninja/fact")
+      .then(function(response){
+        return response.json()
+      })
+      .then(function(data){
+        let txt = "";
+          for (let x in data) {
+            txt += data[x] + " ";
+          document.getElementById("demo2").innerHTML = txt;
+          };
+      
+        return data;
+      })  
+      
+ 
+}
+</script>
+
+
+
+
+</body>
+</html>
